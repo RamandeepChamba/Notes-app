@@ -23,7 +23,7 @@ if(command === 'add') {
 	}
 } else if(command === 'remove') {
 	var noteRemoved = notes.removeNote(title);
-	var message = noteRemoved ? 'Note was removed' : 'Node not found';
+	var message = noteRemoved ? 'Note removed' : 'Node not found';
 	console.log(message);
 } else if(command === 'list') {
 	notes.getAll();
