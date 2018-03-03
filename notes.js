@@ -2,7 +2,7 @@ console.log('Starting note.js');
 
 const fs = require('fs');
 
-var fetchNote = () => {
+var fetchNotes = () => {
 	try {
 		return JSON.parse(fs.readFileSync('notes.json'));
 	} catch(e) {
@@ -16,12 +16,11 @@ var saveNote = (notes) => {
 
 // Adding note
 var addNote = (title, body) => {
-	var notes = fetchNote();
+	var notes = fetchNotes();
 	var note = {
 		title,
 		body
 	};
-
 	// If title already exists
 	var duplicates = notes.filter((note) => note.title === title);
 
@@ -35,13 +34,13 @@ var addNote = (title, body) => {
 
 // Listing all notes
 var getAll = () => {
-	console.log('Listing all notes');
+	return fetchNotes();
 };
 
 // Reading note
 var getNote = (title) => {
 	// Fetch notes
-	var notes = fetchNote();
+	var notes = fetchNotes();
 	// filter out the required note
 	var readNote = notes.filter((note) => note.title === title);	// will return an empty array if note not found
 	// console.log(readNote);	// Check this for testing
@@ -52,7 +51,7 @@ var getNote = (title) => {
 // Removing note
 var removeNote = (title) => {
 	// fetch notes
-	var notes = fetchNote();
+	var notes = fetchNotes();
 
 	// remove note having title same as the argument
 	var filteredNotes = notes.filter((note) => note.title !== title);
