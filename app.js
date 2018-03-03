@@ -15,9 +15,7 @@ if(command === 'add') {
 	var note = notes.addNote(title, body);
 	if(note) {
 		console.log('Note created');
-		console.log('--');
-		console.log(`Title: ${title}`);
-		console.log(`Body: ${body}`);
+		notes.logNote(note);
 	} else {
 		console.log('Note title taken');
 	}
@@ -28,7 +26,13 @@ if(command === 'add') {
 } else if(command === 'list') {
 	notes.getAll();
 } else if(command === 'read') {
-	notes.getNote(title);
+	var note = notes.getNote(title);	// returned value from getNote method
+	if(note) {
+		console.log('Note read');
+		notes.logNote(note);
+	} else {
+		console.log('Note not found');
+	}
 } else {
 	console.log('Command not recognized');
 }

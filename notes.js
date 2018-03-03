@@ -40,7 +40,13 @@ var getAll = () => {
 
 // Reading note
 var getNote = (title) => {
-	console.log('Reading note: ', title);
+	// Fetch notes
+	var notes = fetchNote();
+	// filter out the required note
+	var readNote = notes.filter((note) => note.title === title);	// will return an empty array if note not found
+	// console.log(readNote);	// Check this for testing
+	// filter will return an array, return first element(object) of that array
+	return readNote[0];		// if array is empty, simply returns undefined
 };
 
 // Removing note
@@ -57,11 +63,18 @@ var removeNote = (title) => {
 	return filteredNotes.length !== notes.length;
 };
 
+var logNote = (note) => {
+	console.log('--');
+	console.log(`Title: ${note.title}`);
+	console.log(`Body: ${note.body}`);
+};
+
 // Exporting data
 // In ES6 in objects if (addNote: addNote), simply use addNote
 module.exports = {
 	addNote,
 	getAll,
 	getNote,
-	removeNote
+	removeNote,
+	logNote
 };
